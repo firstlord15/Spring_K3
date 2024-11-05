@@ -1,6 +1,6 @@
 package com.ithub.org.utils;
 
-import com.ithub.org.repository.OrderRepository;
+import com.ithub.org.repositories.OrderRepository;
 import com.ithub.org.models.Order;
 import com.ithub.org.models.OrderStatus;
 import org.springframework.boot.CommandLineRunner;

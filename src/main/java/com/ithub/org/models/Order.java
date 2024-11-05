@@ -3,7 +3,6 @@ package com.ithub.org.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,6 +37,15 @@ public class Order {
     private LocalDate orderDate;
 
     public Order(String product, int quantity, BigDecimal price, OrderStatus status, LocalDate orderDate) {
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
+        this.status = status;
+        this.orderDate = orderDate;
+    }
+
+    public Order(Long id, String product, int quantity, BigDecimal price, OrderStatus status, LocalDate orderDate) {
+        this.id = id;
         this.product = product;
         this.quantity = quantity;
         this.price = price;

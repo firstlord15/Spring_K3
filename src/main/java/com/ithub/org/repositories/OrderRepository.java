@@ -1,4 +1,4 @@
-package com.ithub.org.repository;
+package com.ithub.org.repositories;
 
 import com.ithub.org.models.Order;
 import org.springframework.stereotype.Repository;
