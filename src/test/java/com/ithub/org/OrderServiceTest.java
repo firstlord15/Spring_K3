@@ -1,15 +1,14 @@
-package com.ithub.org.testing;
+package com.ithub.org;
 
 import com.ithub.org.models.Order;
+import com.ithub.org.testing.Tests;
 import com.ithub.org.utils.OrderService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static org.hibernate.validator.internal.util.Contracts.assertTrue;
-
 
 @SpringBootTest
 public class OrderServiceTest extends Tests {
@@ -19,7 +18,7 @@ public class OrderServiceTest extends Tests {
 
     @Test
     public void testGetAllOrders() {
-        assertTrue(!orderService.getAllOrders().isEmpty(), "Expected no orders, but found some.");
+        Assertions.assertFalse(orderService.getAllOrders().isEmpty(), "Expected no orders, but found some.");
     }
 
     @ParameterizedTest
