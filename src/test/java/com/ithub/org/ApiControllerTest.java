@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -30,16 +29,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Disabled
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ApiController.class)
-public class MainControllerTest extends Tests {
+public class ApiControllerTest extends Tests {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
     private OrderService orderService;
-
-    @InjectMocks
-    private ApiController mainController;
 
     @BeforeEach
     public void setup() {
