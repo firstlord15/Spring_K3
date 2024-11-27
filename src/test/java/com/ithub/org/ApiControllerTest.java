@@ -3,7 +3,7 @@ package com.ithub.org;
 import com.ithub.org.controllers.ApiController;
 import com.ithub.org.models.Order;
 import com.ithub.org.testing.Tests;
-import com.ithub.org.utils.OrderService;
+import com.ithub.org.service.OrderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -17,8 +17,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -40,6 +38,7 @@ public class ApiControllerTest extends Tests {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
+        createTestOrder();
     }
 
     @Test
@@ -54,7 +53,7 @@ public class ApiControllerTest extends Tests {
         order.setId(id);
         order.setProduct("Test Order");
 
-        when(orderService.getOrderById(id)).thenReturn(Optional.of(order));
+        when(orderService.getOrderById(id)).thenReturn(order);
 
         mockMvc.perform(get("/api/order/" + id)).andExpect(status().isOk());
     }

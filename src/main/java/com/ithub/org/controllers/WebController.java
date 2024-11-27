@@ -1,7 +1,9 @@
 package com.ithub.org.controllers;
 
 import com.ithub.org.models.Order;
-import com.ithub.org.utils.OrderService;
+import com.ithub.org.service.OrderService;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,11 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
-import java.util.Optional;
 
 
+@Hidden
 @Slf4j
 @Controller
+@Tag(name = "Web Controller")
 public class WebController {
 
     private final OrderService orderService;
@@ -47,15 +50,10 @@ public class WebController {
     @GetMapping("/order/{id}")
     public String order(@PathVariable("id") long id, Model model){
         model.addAttribute("title", "Page by " + id);
-        Optional<Order> order = orderService.getOrderById(id);
+        Order order = orderService.getOrderById(id);
 
-        if (order.isPresent()) {
-            model.addAttribute("order", order.get());
-            log.info("Opened page with orders by id: {}", id);
-        } else {
-            model.addAttribute("errorMessage", "No orders found.");
-            log.error("No orders found by id: {}", id);
-        }
+        model.addAttribute("order", order);
+        log.info("Opened page with orders by id: {}", id);
         return "order";
     }
 }

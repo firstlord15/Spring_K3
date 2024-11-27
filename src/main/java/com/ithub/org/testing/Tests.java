@@ -3,6 +3,7 @@ package com.ithub.org.testing;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ithub.org.models.Order;
 import com.ithub.org.models.OrderStatus;
+import com.ithub.org.service.OrderService;
 import lombok.Getter;
 import org.junit.jupiter.params.provider.Arguments;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,13 @@ abstract public class Tests {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @Autowired
+    private OrderService orderService;
+
+    public void createTestOrder() {
+        orderService.CreateTestOrders();
+    }
 
     // Метод-провайдер для предоставления значений ID
     private static Stream<Long> idProvider() {
